@@ -1,10 +1,8 @@
 
 body {
-	width: 100%;
 	font-family: monospace;
 	color: blue;
 	background: #FDFDFD;
-	padding: 1em;
 }
 
 .wrap{
