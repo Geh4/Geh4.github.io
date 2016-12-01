@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>A Pen by  Jermaine</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <!---<pre>
+   ______       __        _   _____  ___ 
+  / __/ /____ _/ /____   | | / <  / |_  |
+ _\ \/ __/ _ `/ __(_-<   | |/ // / / __/ 
+/___/\__/\_,_/\__/___/   |___//_(_)____/ 
+
+*No Ajax, No PHP, No Flash, All JS (& JQuery) !
+</pre>
+<pre>
+| ------------- |:----------:| ------------:|
+| Browser       | Network    | Login Status |
+| Location      | OS         | Mouse Events |
+| IP Details    | GPU        | Key Events   | 
+</pre>--->
+<!---	<p class="top">
+Having been very intrested by Robin Linus'
+<<<   http://webkay.robinlinus.com/   >>>
+page on how much a browser can know about you,
+I embarked on a similar mission to emulate the
+same parameters with extra.</p>-->
+
+<!---
+pushState() method
+
+Iv'e left out network scanning because of where 
+I work on this small project.
+
+Attack (Pentest)
+Andlabs: http://www.andlabs.org/tools.html
+- Raven
+- JS-Recon
+- Shell of the Future
+- Imposter
+- Sniff-n-Spit
+
+Defend
+- Script Block (Chrome)
+- uBlock (Chrome)
+- NoScript (Firefox)
+*Do to the nature of Chrome, it will not be possible to block "all" scans, with the only solution being to stop using chrome and focus your defense efforts in Firefox.
+- Color of element clicked or hovered
+
+Future Stats:
+- Spectrum of mouse movements.
+Ex: from Blue to Purple to Red shows where the user's cursor moved.
+- Broswer Resizing
+- If mouse is within 10px of the top, user is going to leave the webpage.
+- If mouse is within 10px of the bottom, user is going to leave the webpage to change program.
+- If mouse is in the upper left hand side, and on chrome, the user is going back.
+- Visualize Data
+
+-->
+
+<body onkeypress="getTime(event); showChar(event);" onmousedown="showCoords(event); getClick(event)" onClick="onClick()">
+	<div class="wrap-left">
+		<div>Key Code: <span id="key">00</span> <span id="keyletter"> </span></div>
+		<div>Type CPM: <span id="CPM">0</span></div>
+		<div>Type WPM: <span id="WPM">0</span></div>
+		<div>Charcters: <span id="charNum">0</span></div>
+		<div>Words: <span id="wordCount">0</span></div>
+		<div>Mouse Location:<div id='infos'>X 000 Y 000</div></div>
+		<div>Mouse Speed: <span id="result"></span></div>
+		<div>Browser: <span id="browser"> </span></div>
+		<div>Plugins: <span id="pluginamount"></span>
+		<span id="pluginaddins"></span></div>
+		<div>OS: <span id="os"> </span></div>
+		<div>OS Version: <span id="osVersion"> </span></div>
+		<div>CPU cores: <span id="cpu"></span></div>
+		<div>Public IP Address: <span id="ipaddress"></span></div>
+		<div>Local IP Address: <span id="publicipaddress"></span></div>
+		<div>Hostname: <span id="hostname"></span></div>
+		<div>Organization: <span id="organization"></span></div>
+		<div>Download Speed: <span id="progress"><br>0000<br>0000<br>0000</span></div>
+		<div>Planet: <span>Earth</span></div>
+		<div>Country: <span id="country"></span></div>
+		<div>Region: <span id="region"></span></div>
+		<div>City: <span id="city"></span></div>
+		<div>Geo Location: <span id="location"></span></div>
+		<div>Zip: <span id="postal"></span></div>
+		<div>Cookies: <span id="cookies"> </span></div>
+		<div>Language: <span id="language"> </span></div>
+		<div>Online: <span id="online"> </span></div>
+		<div>Battery: <span id="charging"> </span></div>
+		<div>Battery Level: <span id="level"> </span></div>
+		<div>Battery Dischare Time: <span id="dischargingTime"> </span></div>
+		<div>GPU: <span id="gpu"></span></div>
+		<div>Browser Render Version: <span id="render"></span></div>
+		<div>Browser Render: <span id="renderversion"></span></div>
+		<div>Screen Resolution: <span id="screen"></span></div>
+		<div>Color Depth: <span id="color"></span></div>
+		<div>Google: <span id="google"></span></div>
+	</div>
+	<div class="wrap-left-left">
+		Pending (Finish)
+		<div>Adblocker: <span id="adb"> </span></div>
+		<div>Teamviewer11: <span id="teamviewer11"></span></div>
+		<div>Teamviewer10: <span id="teamviewer10"></span></div>
+		<div>Teamviewer9: <span id="teamviewer9"></span></div>
+		<div>Teamviewer8: <span id="teamviewer8"></span></div>
+		<div>Teamviewer7: <span id="teamviewer7"></span></div>
+		<div>Twitter: <span id="twitter"></span></div>
+		<div>Date (PT): <span id="datept"></span></div>
+		<div>Date: <span id="date"></span></div>
+		<div>Timezone Location: <span id="timezoneloc"></span></div>
+		<div>Timezone Offset: <span id="timezoneoff"></span></div>
+		<div>Flashversion: <span id="flashversion"></span></div>
+		<div>Architexture: <span id="xarch"></span></div>
+		<div>TouchScreen: <span id="touch"></span></div>
+		<div>Fingerprint: <span id="fingerprint"></span></div>
+		<div>Time: <span id="currenttime">00:00:00:000</span></div>
+		<div>Mobile: <span id="mobile"></span></div>
+		<div>Clicks: <span id="clicks">0 </span></div>
+		<div>Time: <span id="spaner"><time>00:00:00</time></span></div>
+		<div>Flash: <span id="flash"></span></div>
+		<div>Facebook: <span id="facebook"></span></div>
+		<div>Click Jacked: <span>Null</span></div>
+		<div>All Events: <span>Null</span></div>
+		<div>Cursor position timestamp: <span>Null</span></div>
+		<div>Unicode Time Icon: <span>Null</span></div>
+		<div>Weather: <span>Null</span></div>
+		<div>Webcam: <span>Null</span></div>
+		<div>Microphone: <span>Null</span></div>
+		<div>Speakers: <span>Null</span></div>
+		<div>Cookie iFrame Data (XSS): <span>Null</span></div>
+		<div>NodeJS OS: <span>Null</span></div>
+		<div>Chrome extensions (Vulnerable): <span>Null</span></div>
+		<div>Clipboard Item: <span>Null</span></div>
+		<div>Mob - Orintation: <span>Null </span></div>
+		<div>Mob - Acceleration: <span>Null</span></div>
+		<div>Mob - Gyroscope: <span>Null </span></div>
+		<div>Mob - Proximity: <span>Null </span></div>
+		<div>Mob - Light: <span>Null </span></div>
+		<div> <span> </span></div>
+		<div> <span> </span></div>
+		<div> <span> </span></div>
+	</div>
+
+
+	<canvas id="glcanvas"></canvas>
+
+
+	<div class="wrap-right"> Events
+		<!--https://developer.mozilla.org/en-US/docs/Web/Events-->
+		<div>Key timeStamp: <span id="keytime"></span></div>
+		<div>Click TimeStamp: <span id="clicktime"></span></div>
+		<div>Click Corrdinates: <span id="mousecoor"></span></div>
+		<div>Mouse Direction: <span id="output"></span></div>
+
+		<div> <span> </span></div>
+		<div> <span> </span></div>
+	</div>
+	<!--
+	<div class="wrap">
+	<div class="browser-mockup">
+	<div class="testcenter">
+	<div class="tc-parent">
+	</div>
+	<button>Button</button>
+	<input type="checkbox">
+	<input type="checkbox">
+	<img src="test.jpg">
+	<textarea></textarea>
+</div>
+</div>
+</div>	
+</div>	
+-->
+	<input placeholder="" type="text" onkeyup="countChar(this)" onkeypress="return myKeyPress(event)" autofocus />
+</body>
+<script>
+	function getIP(json) {
+  document.getElementById("ipaddress").innerHTML= json.ip;
+}
+</script>
+<script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+
+
+<img style="display:none;" onload="logged_in_to_google('Google', true)" onerror="not_logged_in_to_google('Google', false)" src="https://plus.google.com/up/?continue=https://www.google.com/intl/en/images/logos/accounts_logo.png&type=st&gpsrc=ogpy0" />
+
+<script type="text/javascript" src="https://twitter.com/account/use_phx?setting=false&amp;format=text" onload="not_logged_in_to_twitter()" onerror="logged_in_to_twitter()" async="async"></script>
+
+<script type="text/javascript" src="https://www.facebook.com/julia.keltz.9?fref=ts" onload="logged_in_to_facebook()" onerror="not_logged_in_to_facebook()" async="async">
+</script>
+<div id="trailimageid" style="position:absolute;">
+	<span id='infox'></span>
+	<span id='infoy'></span>
+</div>
+<script type="text/javascript">
+	/*
+	Simple Image Trail script- By JavaScriptKit.com
+	Visit http://www.javascriptkit.com for this script and more
+	This notice must stay intact
+	*/
+	
+	var trailimage=["test.gif", 100, 99] //image path, plus width and height
+	var offsetfrommouse=[10,-20] //image x,y offsets from cursor position in pixels. Enter 0,0 for no offset
+	var displayduration=0 //duration in seconds image should remain visible. 0 for always.
+	
+	if (document.getElementById || document.all)
+	document.write('')
+	
+	function gettrailobj(){
+	if (document.getElementById)
+	return document.getElementById("trailimageid").style
+	else if (document.all)
+	return document.all.trailimagid.style
+	}
+	
+	function truebody(){
+	return (!window.opera && document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+	}
+	
+	function hidetrail(){
+	gettrailobj().visibility="hidden"
+	document.onmousemove=""
+	
+	}
+	
+	function followmouse(e){
+	var xcoord=offsetfrommouse[0]
+	var ycoord=offsetfrommouse[1]
+	if (typeof e != "undefined"){
+	xcoord+=e.pageX
+	ycoord+=e.pageY
+	}
+	else if (typeof window.event !="undefined"){
+	xcoord+=truebody().scrollLeft+event.clientX
+	ycoord+=truebody().scrollTop+event.clientY
+	}
+	var docwidth=document.all? truebody().scrollLeft+truebody().clientWidth : pageXOffset+window.innerWidth-15
+	var docheight=document.all? Math.max(truebody().scrollHeight, truebody().clientHeight) : Math.max(document.body.offsetHeight, window.innerHeight)
+	if (xcoord+trailimage[1]+3>docwidth || ycoord+trailimage[2]> docheight)
+	gettrailobj().display="none"
+	else 
+	gettrailobj().display=""
+	gettrailobj().left=xcoord+"px"
+	gettrailobj().top=ycoord+"px"
+	}
+	
+	document.onmousemove=followmouse
+	
+	if (displayduration>0)
+	setTimeout("hidetrail()", displayduration*1000)
+</script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
