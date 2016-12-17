@@ -2,11 +2,10 @@
 
 body {
 	background: black;
-	color: #eee;
+	color: black;
 	font-family: consolas;
 	font-size: 13px;
 	margin: 0px;
-	
 }
 
 input,
@@ -63,9 +62,19 @@ position: absolute;
 	letter-spacing: 5px;
 }
 
+.white {
+    text-align: center;
+    writing-mode: vertical-rl;
+    letter-spacing: 8px;
+    color: #fff;
+    margin: 0 auto;
+}
+
 :focus {
 	outline: 0;
 }
+
+
 
 pre{
 	margin-bottom: 3em;
