@@ -29,7 +29,7 @@ document.getElementById("cpu").innerHTML = cpu
 document.getElementById("cookies").innerHTML = cookies
 
 
-//Lanuage 
+//Lanuage
 document.getElementById("language").innerHTML = language
 
 
@@ -46,7 +46,6 @@ window.onload = function() {
 }
 
 navigator.getBattery().then(function(battery) {
-
 		updateBatteryStatus(battery);
 
 		battery.onchargingchange = function() {
@@ -158,9 +157,9 @@ function keyup(e) {
 //Keycharacter
 function myKeyPress(e) {
 	var keynum;
-	if (window.event) { // IE                    
+	if (window.event) { // IE
 		keynum = e.keyCode;
-	} else if (e.which) { // Netscape/Firefox/Opera                   
+	} else if (e.which) { // Netscape/Firefox/Opera
 		keynum = e.which;
 	}
 	document.getElementById("keyletter").innerHTML = (String.fromCharCode(keynum));
@@ -205,6 +204,38 @@ function checkSpeed() {
 }
 
 
+$(document).ready(function(){
+$.getJSON('http://ipinfo.io', function(data){
+    var coords = data.country.toLowerCase();
+    var kelvin = 0;
+    var celcius = 0;
+    var fahrenheit = 0;
+    console.log(data);
+
+$.getJSON(
+'http://api.openweathermap.org/data/2.5/weather?zip=' + data.postal + ',' + coords + '&APPID=d727f82db95a90f0f8909e62320acf9b&',
+function(json){
+
+     var kelvin = json.main.temp - 273.15;
+     var celcius = Math.round(((kelvin) * 1) / 1);
+     var fahrenheit = Math.round(((((kelvin) * 9 / 5 + 32) * 10)) / 10);
+
+     console.log(json);
+      $("#cer").html(json.weather[0].main);
+      $("#city").html(data.city);
+      $("#weather").html(json.weather[0].description.toLocaleLowerCase());
+      $("#temp").html(celcius + ' Â°C' + ", " + fahrenheit + ' Â°F');
+      $("#windspeed").html(json.wind.speed + " mph");
+      $("#deg").html(json.wind.deg + " Deg");
+      $("#humidity").html(json.main.humidity + " RH");
+      $("#pressure").html(json.main.pressure + " hPa");
+      $("#tempmin").html(json.main.temp_min + ' Â°C');
+      $("#tempmax").html(json.main.temp_max + ' Â°C');
+      $("#clouds").html(json.clouds.all + "%");
+    });
+  });
+});
+
 
 //Word Count
 counter = function() {
@@ -239,9 +270,9 @@ addEventListener('mousemove', tellPosi, false);
 
 //Mouse X Y on Cursor
 function tellPos(p) {
-	
+
 	infox.innerHTML = "<span style='font-size:10px; position:absolute; left: 20px; top: 20px;'>" + "X" + p.pageX + "</span>";
-	
+
 	infoy.innerHTML = "<span style='font-size:10px; position:absolute; left: 20px; bottom: 10;'>" + "Y" + p.pageY + "</span>";
 }
 
@@ -771,12 +802,12 @@ var performance = window.performance || window.mozPerformance || window.msPerfor
 				break;
 		}
 
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		// flash (you'll need to include swfobject)
 		/* script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" */
 		var flashVersion = 'no check';
@@ -845,7 +876,7 @@ $.get("http://ipinfo.io", function(response) {
 	$('#organization').append(organization);
 	$('#phone').append(phone);
 	$('#postal').append(postal);
-	
+
 }, "jsonp");
 
 
@@ -927,7 +958,7 @@ var Detector = function() {
     }
     this.detect = detect;
 };
-	
+
 
 var detective = new Detector();
 document.getElementById("teamviewer11").innerHTML = (detective.detect(teamviewer11));
@@ -982,7 +1013,7 @@ function getFlashVersion(){
   }
   return '0,0,0';
 }
- 
+
 var flashversion = getFlashVersion().split(',').shift();
 if(flashversion < 9){
   document.getElementById("flashversion").innerHTML = ("< 9");
@@ -991,7 +1022,7 @@ if(flashversion < 9){
 }
 
 //Architexture
-if (navigator.userAgent.indexOf("WOW64") != -1 || 
+if (navigator.userAgent.indexOf("WOW64") != -1 ||
     navigator.userAgent.indexOf("Win64") != -1 ){
    document.getElementById("xarch").innerHTML = ("x64");
 } else {
@@ -1008,3 +1039,108 @@ document.getElementById("touch").innerHTML = (isTouchDevice());
 var fingerprint = window.navigator.userAgent.replace(/\D+/g, '');
 
 document.getElementById("fingerprint").innerHTML = (fingerprint);
+
+
+//Kosei Moriyama
+//https://gist.github.com/cou929/7973956#file-detect-private-browsing-js
+function retry(isDone, next) {
+    var current_trial = 0, max_retry = 50, interval = 10, is_timeout = false;
+    var id = window.setInterval(
+        function() {
+            if (isDone()) {
+                window.clearInterval(id);
+                next(is_timeout);
+            }
+            if (current_trial++ > max_retry) {
+                window.clearInterval(id);
+                is_timeout = true;
+                next(is_timeout);
+            }
+        },
+        10
+    );
+}
+
+function isIE10OrLater(user_agent) {
+    var ua = user_agent.toLowerCase();
+    if (ua.indexOf('msie') === 0 && ua.indexOf('trident') === 0) {
+        return false;
+    }
+    var match = /(?:msie|rv:)\s?([\d\.]+)/.exec(ua);
+    if (match && parseInt(match[1], 10) >= 10) {
+        return true;
+    }
+    return false;
+}
+
+function detectPrivateMode(callback) {
+    var is_private;
+
+    if (window.webkitRequestFileSystem) {
+        window.webkitRequestFileSystem(
+            window.TEMPORARY, 1,
+            function() {
+                is_private = false;
+            },
+            function(e) {
+                console.log(e);
+                is_private = true;
+            }
+        );
+    } else if (window.indexedDB && /Firefox/.test(window.navigator.userAgent)) {
+        var db;
+        try {
+            db = window.indexedDB.open('test');
+        } catch(e) {
+            is_private = true;
+        }
+
+        if (typeof is_private === 'undefined') {
+            retry(
+                function isDone() {
+                    return db.readyState === 'done' ? true : false;
+                },
+                function next(is_timeout) {
+                    if (!is_timeout) {
+                        is_private = db.result ? false : true;
+                    }
+                }
+            );
+        }
+    } else if (isIE10OrLater(window.navigator.userAgent)) {
+        is_private = false;
+        try {
+            if (!window.indexedDB) {
+                is_private = true;
+            }
+        } catch (e) {
+            is_private = true;
+        }
+    } else if (window.localStorage && /Safari/.test(window.navigator.userAgent)) {
+        try {
+            window.localStorage.setItem('test', 1);
+        } catch(e) {
+            is_private = true;
+        }
+
+        if (typeof is_private === 'undefined') {
+            is_private = false;
+            window.localStorage.removeItem('test');
+        }
+    }
+
+    retry(
+        function isDone() {
+            return typeof is_private !== 'undefined' ? true : false;
+        },
+        function next(is_timeout) {
+            callback(is_private);
+        }
+    );
+}
+
+ detectPrivateMode(
+        function(is_private) {
+            document.getElementById('incognito').innerHTML = typeof is_private === 'undefined' ? 'cannot detect' : is_private ? 'Yes' : 'No';
+        }
+    );
