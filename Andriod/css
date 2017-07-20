@@ -1,0 +1,116 @@
+
+body {
+	background: black;
+	/*#ff3b00*/
+	color: white;
+	font-family: monospace;
+	font-weight: 100;
+	margin: 5em;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.overlay{
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), black);
+    width: 100%;
+    margin: 0;
+    height: 100px;
+    padding: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 99;
+}
+
+.wrap{
+
+	width: 100%;
+		-webkit-animation: fade 0.5s linear forwards;
+	   -webkit-animation-delay: 0.5s;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+	margin: 0em 5em 0em 5em
+}
+
+h2,
+h3 {
+	display: inline-block;
+}
+
+h2 {
+	font-weight: 400;
+	margin: 0;
+	padding: 0;
+	font-size: 40px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	font-family: 'Abel', sans-serif;
+	line-height: 0px;
+}
+
+h3 {
+	font-weight: 400;
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	line-height: 0px;
+	margin: 0px 3px 0px 0px;
+
+}
+
+h4 {
+
+	font-weight: 400;
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	line-height: 0px;
+	margin: 15px 0px 15px 0px;
+}
+
+p {
+	font-family: "ＭＳ Ｐゴシック", "MS PGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HiraKakuPro-W3", Osaka, Sans-Serif;
+	line-height: 23px;
+	text-align: justify;
+	letter-spacing: 4px;
+	font-size: 73%;
+	width: 450px;
+}
+
+@-webkit-keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+:focus {
+	outline: 0;
+}
+
+::selection {
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff;
+    text-shadow: none;
+}
