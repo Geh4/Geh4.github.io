@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html >
-<head>
-  <meta charset="UTF-8">
-  <title>A Pen by  Jermaine</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/style.css">
-
-  
-</head>
-
-<body>
-  			<div>年月日 Date (PT): <span id="datept"></span></div>
+			<div>年月日 Date (PT): <span id="datept"></span></div>
 			<div>日 Date: <span id="date"></span></div>
 			<div>時間 Time: <span id="currenttime">00:00:00:000</span></div>
 			<div>電池 Battery: <span id="charging"> </span></div>
@@ -22,15 +8,19 @@
 			<div>Public IP Address: <span id="ipaddress"></span></div>
 			<div>Local IP Address: <span id="publicipaddress"></span></div>
 	<div>Download Speed ダウンロード速度 : <span id="progress"><br>0000<br>0000<br>0000</span></div>
-
-				<div>Train Status: <span id="subway"></span></div>
-		</div>
-
+<div>Train Status: 電車の統計<br>
+<span id="subway">
+	<span>2</span>:Delays 
+	<span>4</span>:OK 
+	<span>5</span>:OK 
+</span>
+	
+</div>
+</div>
+<!---
 		<div class="wrap-left-left">
 				<div>Weather: <span id="weather"></span></div>
 				<div>Temperature: <span id="temp"></span></div>
-				<div>Windspeed: <span id="windspeed"></span></div>
-				<div>Direction: <span id="deg"></span></div>
 				<div>Humidity: <span id="humidity"></span></div>
 				<div>Pressure: <span id="pressure"></span></div>
 				<div>Temp Min: <span id="tempmin"></span></div>
@@ -39,7 +29,7 @@
 			</div>
 			</br>
 			</br>
-	
+	-->
 		</div>
 
 
@@ -142,12 +132,6 @@
 	setTimeout("hidetrail()", displayduration*1000)
 </script>-->
   
-    <script src="js/index.js"></script>
-
-</body>
-</html>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-
     <script src="js/index.js"></script>
 
 </body>
