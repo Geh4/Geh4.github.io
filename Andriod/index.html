@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>A Pen by  Jermaine</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  			<div>年月日 Date (PT): <span id="datept"></span></div>
+			<div>日 Date: <span id="date"></span></div>
+			<div>時間 Time: <span id="currenttime">00:00:00:000</span></div>
+			<div>電池 Battery: <span id="charging"> </span></div>
+			<div>水準 Battery Level: <span id="level"> </span></div>
+			<div>Battery Dischare Time: <span id="dischargingTime"> </span></div>
+			<div>Online: <span id="online"> </span></div>
+			<div>Public IP Address: <span id="ipaddress"></span></div>
+			<div>Local IP Address: <span id="publicipaddress"></span></div>
+	<div>Download Speed ダウンロード速度 : <span id="progress"><br>0000<br>0000<br>0000</span></div>
+
+				<div>Train Status: <span id="subway"></span></div>
+		</div>
+
+		<div class="wrap-left-left">
+				<div>Weather: <span id="weather"></span></div>
+				<div>Temperature: <span id="temp"></span></div>
+				<div>Windspeed: <span id="windspeed"></span></div>
+				<div>Direction: <span id="deg"></span></div>
+				<div>Humidity: <span id="humidity"></span></div>
+				<div>Pressure: <span id="pressure"></span></div>
+				<div>Temp Min: <span id="tempmin"></span></div>
+				<div>Temp Max: <span id="tempmax"></span></div>
+				<div>Cloud Coverage: <span id="clouds"></span></div>
+			</div>
+			</br>
+			</br>
+	
+		</div>
+
+
+		<canvas id="glcanvas"></canvas>
+
+
+	</section>
+	<!--
+	<div class="wrap">
+	<div class="browser-mockup">
+	<div class="testcenter">
+	<div class="tc-parent">
+	</div>
+	<button>Button</button>
+	<input type="checkbox">
+	<input type="checkbox">
+	<img src="test.jpg">
+	<textarea></textarea>
+</div>
+</div>
+</div>
+</div>
+-->
+	
+</body>
+<script>
+	function getIP(json) {
+  document.getElementById("ipaddress").innerHTML= json.ip;
+}
+</script>
+<script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+
+
+<img style="display:none;" onload="logged_in_to_google('Google', true)" onerror="not_logged_in_to_google('Google', false)" src="https://plus.google.com/up/?continue=https://www.google.com/intl/en/images/logos/accounts_logo.png&type=st&gpsrc=ogpy0" />
+
+<script type="text/javascript" src="https://twitter.com/account/use_phx?setting=false&amp;format=text" onload="not_logged_in_to_twitter()" onerror="logged_in_to_twitter()" async="async"></script>
+
+<script type="text/javascript" src="https://www.facebook.com/julia.keltz.9?fref=ts" onload="logged_in_to_facebook()" onerror="not_logged_in_to_facebook()" async="async">
+</script>
+<!--
+<div id="trailimageid" style="position:absolute;">
+	<span id='infox'></span>
+	<span id='infoy'></span>
+</div>-->
+<!--<script type="text/javascript">
+	/*
+	Simple Image Trail script- By JavaScriptKit.com
+	Visit http://www.javascriptkit.com for this script and more
+	This notice must stay intact
+	*/
+
+	var trailimage=["test.gif", 100, 99] //image path, plus width and height
+	var offsetfrommouse=[10,-20] //image x,y offsets from cursor position in pixels. Enter 0,0 for no offset
+	var displayduration=0 //duration in seconds image should remain visible. 0 for always.
+
+	if (document.getElementById || document.all)
+	document.write('')
+
+	function gettrailobj(){
+	if (document.getElementById)
+	return document.getElementById("trailimageid").style
+	else if (document.all)
+	return document.all.trailimagid.style
+	}
+
+	function truebody(){
+	return (!window.opera && document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+	}
+
+	function hidetrail(){
+	gettrailobj().visibility="hidden"
+	document.onmousemove=""
+
+	}
+
+	function followmouse(e){
+	var xcoord=offsetfrommouse[0]
+	var ycoord=offsetfrommouse[1]
+	if (typeof e != "undefined"){
+	xcoord+=e.pageX
+	ycoord+=e.pageY
+	}
+	else if (typeof window.event !="undefined"){
+	xcoord+=truebody().scrollLeft+event.clientX
+	ycoord+=truebody().scrollTop+event.clientY
+	}
+	var docwidth=document.all? truebody().scrollLeft+truebody().clientWidth : pageXOffset+window.innerWidth-15
+	var docheight=document.all? Math.max(truebody().scrollHeight, truebody().clientHeight) : Math.max(document.body.offsetHeight, window.innerHeight)
+	if (xcoord+trailimage[1]+3>docwidth || ycoord+trailimage[2]> docheight)
+	gettrailobj().display="none"
+	else
+	gettrailobj().display=""
+	gettrailobj().left=xcoord+"px"
+	gettrailobj().top=ycoord+"px"
+	}
+
+	document.onmousemove=followmouse
+
+	if (displayduration>0)
+	setTimeout("hidetrail()", displayduration*1000)
+</script>-->
+  
+    <script src="js/index.js"></script>
+
+</body>
+</html>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
